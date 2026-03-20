@@ -1,0 +1,12 @@
+1.Clone the Repo(Bash): git clone https://github.com/Tanim-Hasan-Ovi/Cybersecurity-Projects-Hub.git
+2.Open Folder: cd Phishing-URL-Detector
+
+3.Create Virtual Environment: python3 -m venv venv
+Window: venv\Scripts\activate
+Mac: source venv/bin/activate
+
+4.Install Dependencies: pip install -r requirements.txt
+
+5. Train the Model: python3 train_model.py
+
+6. Run the Application: streamlit run app.py
