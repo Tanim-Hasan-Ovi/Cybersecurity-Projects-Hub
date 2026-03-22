@@ -6,9 +6,15 @@ from urllib.parse import urlparse
 import re
 
 # Load the trained model
+import os
+import joblib
+
 @st.cache_resource
 def load_model():
-    return joblib.load('phishing_model.pkl')
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(base_path, "phishing_model.pkl")
+    
+    return joblib.load(model_path)
 
 model = load_model()
 
