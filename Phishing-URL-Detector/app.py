@@ -13,28 +13,29 @@ model = load_model()
 
 # --- NOTUN: Brand Spoofing Check Function ---
 def check_for_brand_spoofing(url):
-    # Clean the URL to get just the hostname (remove http, https, www)
     cleaned_url = url.replace("https://", "").replace("http://", "").lower()
     hostname = cleaned_url.split('/')[0]
     
     if hostname.startswith("www."):
         hostname = hostname[4:]
         
-    # Visual mappings for common tricks
+    # Amra sudhu main domain part ta nibo (e.g., 'google' from 'gemini.google.com')
+    parts = hostname.split('.')
+    
     visual_mappings = {'i': 'l', '1': 'l', '0': 'o', '8': 'b', 'q': 'g'}
-    
-    # Apply mapping to the hostname
-    standardized_hostname = "".join(visual_mappings.get(c, c) for c in hostname)
-    
     target_brands = ['google', 'paypal', 'apple', 'facebook', 'amazon', 'microsoft', 'netflix']
-    
-    for brand in target_brands:
-        # THE SMART FIX:
-        # Check if the fake name has the brand inside it (e.g., 'google' is inside 'gemlnl.google.com')
-        # AND make sure the original URL DOES NOT have the correct spelling (to protect the real gemini.google.com)
-        if brand in standardized_hostname and brand not in hostname:
-            return True, brand
+
+    for part in parts:
+        # Step A: Check if the part is exactly a brand (Safe)
+        if part in target_brands:
+            continue 
             
+        # Step B: Check if the part LOOKS like a brand
+        standardized_part = "".join(visual_mappings.get(c, c) for c in part)
+        for brand in target_brands:
+            if standardized_part == brand and part != brand:
+                return True, brand
+                
     return False, None
 # ---------------------------------------------
 
