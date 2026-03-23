@@ -74,9 +74,16 @@ if submit_button:
             prediction = model.predict(features_df)[0]
             scam_warning = ""
             
-            # 🌟 NEW: The Whitelist (Trusted Sites Override)
-            trusted_domains = ['google.com', 'youtube.com', 'github.com', 'microsoft.com', 'apple.com', 'linkedin.com', 'facebook.com']
-            
+         # 🌟 NEW: The Whitelist (Trusted Sites Override)
+            trusted_domains = [
+                'google.com', 'youtube.com', 'github.com', 'microsoft.com', 
+                'apple.com', 'linkedin.com', 'facebook.com', 'temu.com', 
+                'amazon.com', 'twitter.com', 'x.com', 'instagram.com', 
+                'wikipedia.org', 'yahoo.com', 'bing.com', 'reddit.com', 
+                'netflix.com', 'whatsapp.com', 'telegram.org', 'aliexpress.com', 
+                'ebay.com', 'stackoverflow.com', 'quora.com', 'discord.com',
+                'spotify.com', 'twitch.tv', 'medium.com'
+            ]            
             # Parse the URL correctly to get the domain
             parse_url = user_url if user_url.startswith('http') else 'https://' + user_url
             domain = urlparse(parse_url).netloc.lower()
