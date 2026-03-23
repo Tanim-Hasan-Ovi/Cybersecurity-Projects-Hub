@@ -2,6 +2,10 @@
 
 A smart web app that uses Machine Learning to find fake or dangerous links. It helps you stay safe on the internet.
 
+**🌐 Try the Live App Here: [Phishing URL Detector Live Demo](https://phishing-url-detector-ovi-uko2xjvsyae49kqurz8iyj.streamlit.app/)**
+
+---
+
 ## ✨ Features
 * **🧠 Smart Checking:** Uses a trained AI model to look at links and check if they are safe or a scam.
 * **🕵️ Fake Brand Finder:** Catches scammers who try to use fake names of big companies (like typing `googIe.com` instead of `google.com`).
